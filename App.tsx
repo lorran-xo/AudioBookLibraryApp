@@ -2,6 +2,7 @@ import React from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
+import {ContextProvider} from './src/hooks/context';
 import {Routes} from './src/routes';
 
 const App = () => {
@@ -14,7 +15,9 @@ const App = () => {
         backgroundColor="transparent"
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
       />
-      <Routes />
+      <ContextProvider>
+        <Routes />
+      </ContextProvider>
     </NavigationContainer>
   );
 };

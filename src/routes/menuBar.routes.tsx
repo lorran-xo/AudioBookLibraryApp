@@ -41,6 +41,7 @@ export function MenuBar() {
   return (
     <Tab.Navigator
       screenOptions={{
+        // TODO - styles
         tabBarShowLabel: false,
         headerShown: false,
         tabBarActiveTintColor: Theme.colors.background,
