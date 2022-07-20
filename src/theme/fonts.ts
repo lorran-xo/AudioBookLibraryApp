@@ -21,15 +21,7 @@ const weight = {
     light: '300',
 };
 
-const type = {
-    graphikmedium: 'Graphik-Medium',
-    graphikregular: 'Graphik-Regular',
-    graphiksemibold: 'Graphik-SemiBold',
-    sangbleuversaillesregular: 'SangBleuVersailles-Regular',
-};
-
 export default {
     size,
     weight,
-    type,
 };
