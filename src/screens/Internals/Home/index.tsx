@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {ScrollView, View, Text, Platform, Image} from 'react-native';
 
-import {AbsolutePositioning, styles} from '../../../commonStyles';
+import {AbsolutePositioning, DefaultText, styles} from '../../../commonStyles';
 import {useGlobalContext} from '../../../hooks/context';
 import {Theme} from '../../../theme';
 import {
@@ -13,7 +13,6 @@ import {
   GreetingView,
   GreetingText,
   NameText,
-  WelcomeText,
   BookCoverBottom,
   RecWrapper,
   RecText,
@@ -43,17 +42,7 @@ export function Home() {
         bounces={false}
         style={styles.scrollView}
         contentContainerStyle={styles.scrollViewBottom}
-        showsVerticalScrollIndicator={false}
-        // refreshControl={
-        //   <RefreshControl
-        //     refreshing={isLoading}
-        //     onRefresh={() => {
-        //       setIsLoading(true);
-        //       getNewQuote(); // TODO
-        //     }}
-        //   />
-        // }
-      >
+        showsVerticalScrollIndicator={false}>
         <ContentView>
           <IntroWrapper>
             <GreetingView>
@@ -68,12 +57,12 @@ export function Home() {
               </Text>
             </GreetingView>
 
-            <WelcomeText
+            <DefaultText
               numberOfLines={2}
               adjustsFontSizeToFit
               ellipsizeMode="tail">
-              Welcome to your portable audio bookshelf.
-            </WelcomeText>
+              Our recommendation for you today is...
+            </DefaultText>
           </IntroWrapper>
 
           <BookCoverContainer>
@@ -90,8 +79,7 @@ export function Home() {
             <BookCoverBottom>
               <RecWrapper>
                 <RecText numberOfLines={2} ellipsizeMode="tail">
-                  {/* TODO: A cool quote here that updates when screen refreshes. */}
-                  This is our recommendation for you today!
+                  This is book title or description.
                 </RecText>
               </RecWrapper>
 

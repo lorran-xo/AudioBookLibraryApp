@@ -21,6 +21,17 @@ export const DefaultScreenTitle = styled(Text)`
   margin-top: 72px;
 `;
 
+export const DefaultText = styled(Text)`
+  text-align: center;
+  font-weight: ${Theme.fontWeight.regular};
+  font-size: ${Theme.fontSize.font15}px;
+  color: ${Theme.colors.textPrimary};
+  line-height: 19px;
+  margin-top: 14px;
+
+  width: ${Theme.metrics.screenWidth - 80}px;
+`;
+
 export const AbsolutePositioning = styled(View)`
   position: absolute;
   top: 0;

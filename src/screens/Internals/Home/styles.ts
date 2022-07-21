@@ -56,17 +56,6 @@ export const NameText = styled(Text) <TextProps>`
   line-height: 36px;
 `;
 
-export const WelcomeText = styled(Text)`
-  text-align: center;
-  font-weight: ${Theme.fontWeight.regular};
-  font-size: ${Theme.fontSize.font15}px;
-  color: ${Theme.colors.textPrimary};
-  line-height: 19px;
-  margin-top: 14px;
-
-  width: ${Theme.metrics.screenWidth - 80}px;
-`;
-
 export const BookCoverContainer = styled(View)`
   justify-content: space-between;
 

@@ -91,17 +91,7 @@ export function LibraryShelf() {
         <Container>
           <ScrollView
             contentContainerStyle={styles.scrollViewBottom}
-            showsVerticalScrollIndicator={false}
-            // refreshControl={ // TODO?
-            //   <RefreshControl
-            //     refreshing={loading}
-            //     onRefresh={() => {
-            //       setLoading(true);
-            //       getExploreJourneys();
-            //     }}
-            //   />
-            // }
-          >
+            showsVerticalScrollIndicator={false}>
             <DefaultScreenTitle>Library Shelf</DefaultScreenTitle>
 
             <SliderContainer>

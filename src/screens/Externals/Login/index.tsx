@@ -27,6 +27,7 @@ export function Login() {
     if (typedUserName) {
       setInputError('');
       setUserData({name: typedUserName, isAuthenticated: true});
+      // TODO: Here we will set a random book recommendation for Home screen.
 
       return;
     }
@@ -46,7 +47,8 @@ export function Login() {
         <LoginTextWrapper>
           <LoginText>Login</LoginText>
           <LoginWelcomeText onPress={() => handleLogin()}>
-            Welcome to your portable bookshelf!
+            Welcome to your portable audio bookshelf!
+            {/* TODO fix to fit */}
           </LoginWelcomeText>
 
           <LoginTextDescription>

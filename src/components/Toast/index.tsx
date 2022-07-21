@@ -3,7 +3,7 @@ import uuid from 'react-native-uuid';
 
 import {AnimatedText} from './AnimatedText';
 import {ToastType} from './types';
-import {AbsolutePositioning} from '../../styles/commonstyles';
+import {AbsolutePositioning} from '../../commonStyles';
 
 export interface ToastData {
   title: string;
