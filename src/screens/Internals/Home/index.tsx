@@ -14,11 +14,11 @@ import {
   GreetingText,
   NameText,
   WelcomeText,
-  JourneyCardBottom,
-  StepDescription,
-  JourneyButtonWrapper,
-  StepTitle,
-  JourneyCardContainer,
+  BookCoverBottom,
+  RecWrapper,
+  RecText,
+  ListenButtonWrapper,
+  BookCoverContainer,
   styleSheet,
 } from './styles';
 
@@ -77,7 +77,7 @@ export function Home() {
             </WelcomeText>
           </IntroWrapper>
 
-          <JourneyCardContainer>
+          <BookCoverContainer>
             <AbsolutePositioning>
               <Image
                 style={styleSheet.bookCover}
@@ -88,19 +88,19 @@ export function Home() {
             </AbsolutePositioning>
             <View />
 
-            <JourneyCardBottom>
-              <StepDescription>
-                <StepTitle numberOfLines={2} ellipsizeMode="tail">
+            <BookCoverBottom>
+              <RecWrapper>
+                <RecText numberOfLines={2} ellipsizeMode="tail">
                   {/* TODO: A cool quote here that updates when screen refreshes. */}
                   This is our recommendation for you today!
-                </StepTitle>
-              </StepDescription>
+                </RecText>
+              </RecWrapper>
 
-              <JourneyButtonWrapper>
-                <Button title="Listen" width={263} onButtonPress={() => ({})} />
-              </JourneyButtonWrapper>
-            </JourneyCardBottom>
-          </JourneyCardContainer>
+              <ListenButtonWrapper>
+                <Button title="Listen" width={265} onButtonPress={() => ({})} />
+              </ListenButtonWrapper>
+            </BookCoverBottom>
+          </BookCoverContainer>
         </ContentView>
       </ScrollView>
     </Container>

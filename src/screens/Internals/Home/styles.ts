@@ -67,7 +67,7 @@ export const WelcomeText = styled(Text)`
   width: ${Theme.metrics.screenWidth - 80}px;
 `;
 
-export const JourneyCardContainer = styled(View)`
+export const BookCoverContainer = styled(View)`
   justify-content: space-between;
 
   width: 327px;
@@ -77,7 +77,8 @@ export const JourneyCardContainer = styled(View)`
   overflow: hidden;
 `;
 
-export const JourneyCardBottom = styled(View)`
+
+export const BookCoverBottom = styled(View)`
   background-color: rgba(255, 255, 255, 0.7);
   align-items: center;
   border-top-width: 1px;
@@ -86,14 +87,14 @@ export const JourneyCardBottom = styled(View)`
   height: 172px;
 `;
 
-export const StepDescription = styled(View)`
+export const RecWrapper = styled(View)`
   flex-direction: column;
   width: 257px;
   height: 100px;
   justify-content: center;
 `;
 
-export const StepTitle = styled(Text)`
+export const RecText = styled(Text)`
   font-weight: ${Theme.fontWeight.medium};
   font-size: ${Theme.fontSize.font16}px;
   color: ${Theme.colors.textPrimary};
@@ -102,7 +103,7 @@ export const StepTitle = styled(Text)`
   margin-top: 15px;
 `;
 
-export const JourneyButtonWrapper = styled(View)`
+export const ListenButtonWrapper = styled(View)`
   margin-bottom: ${Theme.metrics.screenHeight * 0.01}px;
 `;
 
