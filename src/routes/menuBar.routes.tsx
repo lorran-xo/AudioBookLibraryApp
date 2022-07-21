@@ -1,21 +1,23 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 
 import {Home} from '../screens/Internals/Home';
 import {LibraryShelf} from '../screens/Internals/LibraryShelf';
 import {About} from '../screens/Internals/About';
 
-import ExploreIcon from '../assets/icons/Explore.svg';
+
 import HomeIcon from '../assets/icons/Home.svg';
-import ProfileIcon from '../assets/icons/Profile.svg';
+import LibraryIcon from '../assets/icons/Library.svg';
+import AboutIcon from '../assets/icons/About.svg';
 
 import {Theme} from '../theme';
+import {styles} from './styles';
 
 export type menuBarStackParamList = {
-  Today: undefined;
-  Explore: undefined;
-  Profile: undefined;
+  Home: undefined;
+  LibraryShelf: undefined;
+  About: undefined;
 };
 
 const Tab = createBottomTabNavigator<menuBarStackParamList>();
@@ -41,23 +43,15 @@ export function MenuBar() {
   return (
     <Tab.Navigator
       screenOptions={{
-        // TODO - styles
         tabBarShowLabel: false,
         headerShown: false,
-        tabBarActiveTintColor: Theme.colors.background,
-        tabBarInactiveTintColor: '#E5E5E501',
+        tabBarActiveTintColor: Theme.colors.filled,
+        tabBarInactiveTintColor: Theme.colors.lightGray,
         tabBarHideOnKeyboard: true,
-        tabBarStyle: {
-          backgroundColor: 'rgba(241, 241, 241, 0.8)',
-          position: 'absolute',
-          elevation: 0,
-          borderTopWidth: 0,
-          borderBottomWidth: 0,
-          height: 90,
-        },
+        tabBarStyle: styles.tabBarInline,
       }}>
       <Tab.Screen
-        name="Today"
+        name="Home"
         component={Home}
         options={{
           tabBarIcon: ({size, color}: TabBarIconProps) =>
@@ -67,46 +61,26 @@ export function MenuBar() {
         }}
       />
       <Tab.Screen
-        name="Explore"
+        name="LibraryShelf"
         component={LibraryShelf}
         options={{
           tabBarIcon: ({size, color}: TabBarIconProps) =>
             containerTabBar({
-              icon: <ExploreIcon fill={color} height={size} />,
+              icon: <LibraryIcon fill={color} height={size} />,
             }),
         }}
       />
 
       <Tab.Screen
-        name="Profile"
+        name="About"
         component={About}
         options={{
           tabBarIcon: ({size, color}: TabBarIconProps) =>
             containerTabBar({
-              icon: <ProfileIcon fill={color} height={size} />,
+              icon: <AboutIcon fill={color} height={size} />,
             }),
         }}
       />
     </Tab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  containerTabBar: {
-    alignItems: 'center',
-  },
-
-  tabBar: {
-    position: 'absolute',
-    height: 90,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    opacity: 0.7,
-  },
-
-  containerTabBarIcon: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});

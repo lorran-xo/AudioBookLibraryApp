@@ -15,7 +15,7 @@ export function renderLoading(): JSX.Element {
         ActivityIndicatorStyle.container,
         ActivityIndicatorStyle.horizontal,
       ]}>
-      <ActivityIndicator size="large" color={Theme.colors.background} />
+      <ActivityIndicator size="large" color={Theme.colors.filled} />
     </View>
   );
 }
@@ -85,4 +85,18 @@ export function OnSwipingOrPressingBack<
     // eslint disabled because dependency array should be empty so this will run only on 'going back' actions
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+}
+
+export function adjustIosFontSize(
+  event: any,
+  numberOfLines: number,
+  fontSize: number,
+): number {
+  const {lines} = event.nativeEvent;
+
+  if (lines.length > numberOfLines) {
+    return fontSize - 1;
+  }
+
+  return fontSize;
 }

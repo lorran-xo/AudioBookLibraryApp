@@ -19,7 +19,6 @@ import {
   AutoCapitalizeType,
   AutoCompleteType,
   InputType,
-  InputVariantType,
 } from './types';
 
 import {Theme} from '../../theme';
@@ -33,7 +32,6 @@ interface Props extends TextInputProps {
   inputType?: InputType;
   editable?: boolean;
   errorText?: string;
-  variant?: InputVariantType;
   isActive?: (state: boolean) => void;
   onPressIcon?: () => void;
   onFocus?: () => void;
@@ -51,7 +49,6 @@ export function Input({
   placeholder = '',
   errorText = '',
   isActive = () => false,
-  onPressIcon,
   onFocus = () => ({}),
   onBlur = () => ({}),
   handleTextChange,

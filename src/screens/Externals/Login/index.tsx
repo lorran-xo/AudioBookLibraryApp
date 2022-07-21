@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView} from 'react-native';
 
 import {
-  Container,
   AppLogo,
   LoginText,
   LoginTextWrapper,
@@ -12,8 +11,8 @@ import {
   ButtonContainer,
 } from './styles';
 
-import Logo from '../../../assets/logos/audiobook-logo1.svg';
-import {styles} from '../../../commonStyles';
+import Logo from '../../../assets/logos/audiobook-logo.svg';
+import {Container, styles} from '../../../commonStyles';
 import {useGlobalContext} from '../../../hooks/context';
 import {Input} from '../../../components/Input';
 import {Button} from '../../../components/Button';
@@ -25,8 +24,8 @@ export function Login() {
 
   function handleLogin() {
     if (typedUserName) {
-      setUserData({name: typedUserName, isAuthenticated: true});
       setInputError('');
+      setUserData({name: typedUserName, isAuthenticated: true});
 
       return;
     }
@@ -40,7 +39,7 @@ export function Login() {
         contentContainerStyle={styles.scrollViewBottom}
         showsVerticalScrollIndicator={false}>
         <AppLogo>
-          <Logo width={100} height={100} fill="#4f4f4f" />
+          <Logo width={100} height={100} fill="#2B5C8E95" />
         </AppLogo>
 
         <LoginTextWrapper>
@@ -55,6 +54,8 @@ export function Login() {
 
           <InputContainer>
             <Input
+              autoComplete="name"
+              autoCapitalize="words"
               placeholder="Name"
               errorText={inputError}
               inputValue={typedUserName}

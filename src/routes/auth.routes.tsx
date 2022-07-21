@@ -10,8 +10,6 @@ export type AuthStackParamList = {
 const {Navigator, Screen} = createNativeStackNavigator<AuthStackParamList>();
 
 export function AuthRoutes() {
-    // const {toastData, setToastData} = useAuth();
-
   return (
     <>
       <Navigator
@@ -22,10 +20,6 @@ export function AuthRoutes() {
         }}>
         <Screen name="Login" component={Login} />
       </Navigator>
-        {/* 
-      <View style={styles.toasterContainer}>
-        <Toast toastData={toastData} clearToastData={clearToastData} />
-      </View> */}
     </>
   );
 }

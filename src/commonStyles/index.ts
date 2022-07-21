@@ -2,6 +2,15 @@ import styled from 'styled-components';
 import { StyleSheet, Text, View } from 'react-native';
 import { Theme } from '../theme';
 
+export const Container = styled(View)`
+  flex: 1;
+
+  padding: 0 ${Theme.metrics.screenHeight * 0.02}px 0
+  ${Theme.metrics.screenHeight * 0.02}px;
+
+  background-color: ${Theme.colors.ultraLightGray};
+`;
+
 export const DefaultScreenTitle = styled(Text)`
   font-weight: ${Theme.fontWeight.medium};
   font-size: ${Theme.fontSize.font22}px;
@@ -10,22 +19,6 @@ export const DefaultScreenTitle = styled(Text)`
 
   align-self: center;
   margin-top: 72px;
-`;
-
-export const TitleText = styled(Text)`
-  font-weight: ${Theme.fontWeight.bold};
-  font-size: ${Theme.fontSize.font24}px;
-  color: ${Theme.colors.white};
-  line-height: 40px;
-`;
-
-export const DescriptionText = styled(Text)`
-  margin-top: ${Theme.metrics.screenHeight * 0.031}px;
-  font-weight: ${Theme.fontWeight.regular};
-  font-size: ${Theme.fontSize.font15}px;
-  color: ${Theme.colors.white};
-  opacity: 0.7;
-  line-height: 18px;
 `;
 
 export const AbsolutePositioning = styled(View)`
