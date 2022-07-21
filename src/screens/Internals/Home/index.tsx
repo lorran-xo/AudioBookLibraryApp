@@ -19,7 +19,6 @@ import {
   RecText,
   ListenButtonWrapper,
   BookCoverContainer,
-  styleSheet,
 } from './styles';
 
 import {adjustIosFontSize, renderLoading} from '../../../utils';
@@ -80,7 +79,7 @@ export function Home() {
           <BookCoverContainer>
             <AbsolutePositioning>
               <Image
-                style={styleSheet.bookCover}
+                style={styles.bookCover}
                 source={{
                   uri: 'https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg',
                 }}

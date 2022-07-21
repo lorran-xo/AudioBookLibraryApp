@@ -16,6 +16,7 @@ import {Container, styles} from '../../../commonStyles';
 import {useGlobalContext} from '../../../hooks/context';
 import {Input} from '../../../components/Input';
 import {Button} from '../../../components/Button';
+import { Theme } from '../../../theme';
 
 export function Login() {
   const {setUserData} = useGlobalContext();
@@ -39,7 +40,7 @@ export function Login() {
         contentContainerStyle={styles.scrollViewBottom}
         showsVerticalScrollIndicator={false}>
         <AppLogo>
-          <Logo width={100} height={100} fill="#2B5C8E95" />
+          <Logo width={100} height={100} fill={Theme.colors.logo} />
         </AppLogo>
 
         <LoginTextWrapper>

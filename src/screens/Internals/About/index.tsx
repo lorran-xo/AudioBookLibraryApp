@@ -18,6 +18,7 @@ export function About() {
         showsVerticalScrollIndicator={false}>
         <DefaultScreenTitle> About </DefaultScreenTitle>
         <Text onPress={() => handleLogout()}>Click to Logout</Text>
+        {/* ADD about me, map*, creditos, logout, contacts. */}
       </ScrollView>
     </>
   );

@@ -14,6 +14,7 @@ const colors = {
   gray: '#9e9e9e',
   blue: '#4579AE',
   disabledInput: '#EBEBE4',
+  logo: '#2B5C8E95',
 };
 
 export default colors;

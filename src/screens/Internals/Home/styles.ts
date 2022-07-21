@@ -106,10 +106,3 @@ export const RecText = styled(Text)`
 export const ListenButtonWrapper = styled(View)`
   margin-bottom: ${Theme.metrics.screenHeight * 0.01}px;
 `;
-
-export const styleSheet = StyleSheet.create({
-    bookCover: {
-        width: '100%',
-        height: '100%'
-    }
-});

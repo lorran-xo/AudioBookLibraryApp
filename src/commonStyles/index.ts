@@ -54,4 +54,8 @@ export const styles = StyleSheet.create({
   scrollViewBottom: {
     paddingBottom: 100,
   },
+  bookCover: {
+    width: '100%',
+    height: '100%'
+  }
 });

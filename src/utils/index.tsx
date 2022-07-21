@@ -1,4 +1,4 @@
-import {DependencyList, useEffect} from 'react';
+import React, {DependencyList, useEffect} from 'react';
 import {ActivityIndicator, BackHandler, View} from 'react-native';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -15,13 +15,13 @@ export function renderLoading(): JSX.Element {
         ActivityIndicatorStyle.container,
         ActivityIndicatorStyle.horizontal,
       ]}>
-      <ActivityIndicator size="large" color={Theme.colors.filled} />
+      <ActivityIndicator size="large" color={Theme.colors.logo} />
     </View>
   );
 }
 
 export function getMinimalTouchableArea(width: number, height: number) {
-  // Get the minimum touchable area for buttons set by the designs (38px)
+  // Get the minimum touchable area for buttons (38px) - slop
   let remainingWidthArea,
     remainingHeightArea = 0;
 
