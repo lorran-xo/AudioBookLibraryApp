@@ -26,7 +26,6 @@ export const LoginWelcomeText = styled(Text)`
     font-weight: ${Theme.fontWeight.medium};
     font-size: ${Theme.fontSize.font18}px;
     color: ${Theme.colors.textPrimary};
-    line-height: 23px;
 
     margin-top: 30px;
 `;

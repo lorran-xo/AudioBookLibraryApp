@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native';
 import { Theme } from '../../../theme';
 
+export const AboutContainer = styled(View)`
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+`;
+
 export const OptionArea = styled(View)`
   background-color: ${Theme.colors.white};
 
@@ -30,4 +36,25 @@ export const OptionText = styled(Text)`
 
 export const OptionTopSpacing = styled(View)`
   margin-top: 26px;
+`;
+
+export const NameInputContainer = styled(View)`
+  margin-top: 50px; 
+  margin-right: 10px;
+  margin-left: 10px;
+`;
+
+export const RandomQuoteWrapper = styled(View)`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const InfoIconWrapper = styled(TouchableOpacity)`
+  margin-right: 5px;
+  margin-left: 5px;
+`;
+
+export const AboutBottomText = styled(View)`
+  align-items: center;
 `;

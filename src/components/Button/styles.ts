@@ -17,8 +17,8 @@ export const Container = styled(TouchableHighlight)<ContainerProps>`
   border-style: solid;
   border-radius: 25px;
   justify-content: flex-end;
-  border-color: #2B5C8E;
-  background-color: #2B5C8E;
+  border-color: ${Theme.colors.secondary};
+  background-color: ${Theme.colors.secondary};
 
   ${props =>
     props.disabled &&

@@ -11,7 +11,7 @@ import {
   ButtonContainer,
 } from './styles';
 
-import Logo from '../../../assets/logos/audiobook-logo.svg';
+import Logo from '../../../assets/logos/app-logo.svg';
 import {Container, styles} from '../../../commonStyles';
 import {useGlobalContext} from '../../../hooks/context';
 import {Input} from '../../../components/Input';
@@ -41,14 +41,13 @@ export function Login() {
         contentContainerStyle={styles.scrollViewBottom}
         showsVerticalScrollIndicator={false}>
         <AppLogo>
-          <Logo width={100} height={100} fill={Theme.colors.logo} />
+          <Logo width={100} height={100} fill={Theme.colors.secondary} />
         </AppLogo>
 
         <LoginTextWrapper>
           <LoginText>Login</LoginText>
           <LoginWelcomeText onPress={() => handleLogin()}>
-            Welcome to your portable audio bookshelf!
-            {/* TODO fix to fit */}
+            Welcome to your audiobook library!
           </LoginWelcomeText>
 
           <LoginTextDescription>

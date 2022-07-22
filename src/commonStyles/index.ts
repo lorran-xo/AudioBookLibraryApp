@@ -29,7 +29,7 @@ export const DefaultText = styled(Text)`
   line-height: 19px;
   margin-top: 14px;
 
-  width: ${Theme.metrics.screenWidth - 80}px;
+  width: ${Theme.metrics.screenWidth - 100}px;
 `;
 
 export const AbsolutePositioning = styled(View)`
