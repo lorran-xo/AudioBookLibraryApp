@@ -5,3 +5,7 @@ export enum Routes {
     CommonRoutes = 'CommonRoutes',
     AudioPlayerScreen = 'AudioPlayerScreen',
 }
+
+export enum LocalStorageKeys {
+    currentUserStateKey = 'currentUserState',
+}

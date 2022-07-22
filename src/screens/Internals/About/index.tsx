@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {ScrollView, Linking, RefreshControl, Text} from 'react-native';
+import MMKVStorage from 'react-native-mmkv-storage';
 
 import {useGlobalContext} from '../../../hooks/context';
 import {DefaultScreenTitle, DefaultText, styles} from '../../../commonStyles';
@@ -27,9 +28,10 @@ import InfoIcon from '../../../assets/icons/InfoIcon.svg';
 import {Theme} from '../../../theme';
 import {Input} from '../../../components/Input';
 import {BottomModal} from '../../../components/BottomModal';
-import {COOL_QUOTES_LIST} from './quoteList';
 import {matchNumberInString} from '../../../utils';
-import {Routes} from '../../../../Constants';
+import {COOL_QUOTES_LIST} from './quoteList';
+
+const localStorage = new MMKVStorage.Loader().initialize();
 
 export function About() {
   const {userData, setUserData, setToastData} = useGlobalContext();
@@ -43,6 +45,7 @@ export function About() {
 
   function handleLogout() {
     setUserData({name: '', isAuthenticated: false});
+    localStorage.clearStore();
   }
 
   function getNewQuote() {

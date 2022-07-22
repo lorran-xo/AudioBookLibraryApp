@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useState} from 'react';
 
-import {ToastData} from '../components/Toast';
+import {ToastData} from '../components/Toast/types';
 import {ContextProviderType, ContextUserType} from './types';
 
 interface ContextDataType {

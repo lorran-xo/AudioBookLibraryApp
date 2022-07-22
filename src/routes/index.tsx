@@ -1,15 +1,49 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import MMKVStorage from 'react-native-mmkv-storage';
 
 import {AppRoutes} from './app.routes'; // Internal routes of the app, when the user has already logged in.
 import {AuthRoutes} from './auth.routes'; // External routes of the app, before the user logs in;
 import {useGlobalContext} from '../hooks/context';
+import {LocalStorageKeys} from '../../Constants';
+import {ContextUserType} from '../hooks/types';
+import {renderLoading} from '../utils';
+
+const localStorage = new MMKVStorage.Loader().initialize();
 
 export function Routes() {
-const {userData} = useGlobalContext();
+  const {userData, setUserData} = useGlobalContext();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    verifyCredentials();
+  }, []);
+
+  async function verifyCredentials() {
+    await localStorage
+      .getMapAsync(LocalStorageKeys.currentUserStateKey)
+      .then(value => {
+        if (value) {
+          setUserData({
+            isAuthenticated: value?.isAuthenticated,
+            name: value?.name,
+          } as ContextUserType);
+        } else {
+          setUserData({
+            isAuthenticated: false,
+            name: '',
+          } as ContextUserType);
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
 
   return (
     <>
-      {userData?.isAuthenticated ? (
+      {isLoading ? (
+        renderLoading()
+      ) : userData?.isAuthenticated ? (
         <AppRoutes />
       ) : (
         <AuthRoutes />

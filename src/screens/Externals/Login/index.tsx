@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {ScrollView} from 'react-native';
+import MMKVStorage from 'react-native-mmkv-storage';
 
 import {
   AppLogo,
@@ -16,7 +17,10 @@ import {Container, styles} from '../../../commonStyles';
 import {useGlobalContext} from '../../../hooks/context';
 import {Input} from '../../../components/Input';
 import {Button} from '../../../components/Button';
-import { Theme } from '../../../theme';
+import {Theme} from '../../../theme';
+import {LocalStorageKeys} from '../../../../Constants';
+
+const localStorage = new MMKVStorage.Loader().initialize();
 
 export function Login() {
   const {setUserData} = useGlobalContext();
@@ -25,8 +29,17 @@ export function Login() {
 
   function handleLogin() {
     if (typedUserName) {
+      let currentUserState = {
+        name: typedUserName,
+        isAuthenticated: true,
+      };
+
       setInputError('');
       setUserData({name: typedUserName, isAuthenticated: true});
+      localStorage.setMap(
+        LocalStorageKeys.currentUserStateKey,
+        currentUserState,
+      );
       // INTEGRATION: Here we will set a random book recommendation for Home screen.
 
       return;
