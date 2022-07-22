@@ -3,7 +3,7 @@ import Slider from '@react-native-community/slider';
 import uuid from 'react-native-uuid';
 import moment from 'moment';
 
-import {TouchableOpacity, StyleSheet, View, Platform} from 'react-native';
+import {TouchableOpacity, StyleSheet, View} from 'react-native';
 
 import TrackPlayer, {
   Capability,
@@ -252,8 +252,7 @@ export function AudioPlayer({
     console.debug('handleCloseAudioPlayer()');
 
     await TrackPlayer.stop();
-    await TrackPlayer.destroy();
-
+    // await TrackPlayer.destroy(); // Had to be done in screens/Internals/Commons/AudioPlayerScreen
     onPressClose();
   }
 

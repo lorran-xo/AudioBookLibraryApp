@@ -45,7 +45,7 @@ export const Button = styled(TouchableOpacity) <ButtonProps>`
   ${({ type }) =>
     type === 'success' &&
     css`
-      background-color: #199c9c;
+      background-color: ${Theme.colors.blue};
     `}
 
   ${({ type }) =>
@@ -57,7 +57,7 @@ export const Button = styled(TouchableOpacity) <ButtonProps>`
   ${({ type }) =>
     type === 'warning' &&
     css`
-      background-color: #00a0d2;
+      background-color: ${Theme.colors.yellowWarning};
     `}
 `;
 

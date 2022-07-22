@@ -79,7 +79,7 @@ export function About() {
       setToastData({
         title: 'Success',
         label: `You've updated your name`,
-        type: 'warning',
+        type: 'success',
       });
     } else {
       setNewName(userData.name);
@@ -94,7 +94,6 @@ export function About() {
   function handleOpenAudioPlayer() {
     // TODO
     let audioPlayerData = {
-      index: 123,
       title: 'A Day With Great Poets',
       subtitle: 'Gillington Byron',
       audioSource:
@@ -160,6 +159,24 @@ export function About() {
 
           <OptionTopSpacing>
             <TouchableOption
+              // onPress={() =>
+              //   Linking.openURL('https://www.linkedin.com/in/lorran-x-oliv/')
+              // }
+              onPress={() => handleOpenAudioPlayer()} // TODO
+            >
+              <IconWrapper>
+                <LinkedinIcon
+                  width={30}
+                  height={30}
+                  fill={Theme.colors.black}
+                />
+              </IconWrapper>
+              <OptionText>LinkedIn</OptionText>
+            </TouchableOption>
+          </OptionTopSpacing>
+
+          <OptionTopSpacing>
+            <TouchableOption
               onPress={() =>
                 Linking.openURL('https://www.instagram.com/lorran_xo/')
               }>
@@ -171,24 +188,6 @@ export function About() {
                 />
               </IconWrapper>
               <OptionText>Instagram</OptionText>
-            </TouchableOption>
-          </OptionTopSpacing>
-
-          <OptionTopSpacing>
-            <TouchableOption
-              onPress={() =>
-                Linking.openURL('https://www.linkedin.com/in/lorran-x-oliv/')
-              }
-              // onPress={() => handleOpenAudioPlayer()} // TODO
-            >
-              <IconWrapper>
-                <LinkedinIcon
-                  width={30}
-                  height={30}
-                  fill={Theme.colors.black}
-                />
-              </IconWrapper>
-              <OptionText>LinkedIn</OptionText>
             </TouchableOption>
           </OptionTopSpacing>
 

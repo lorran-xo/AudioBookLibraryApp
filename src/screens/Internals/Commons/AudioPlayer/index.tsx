@@ -4,8 +4,9 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {AudioPlayer} from '../../../../components/AudioPlayer';
-import {Routes} from '../../../../../Constants';
 import {menuBarStackParamList} from '../../../../routes/menuBar.routes';
+import {useGlobalContext} from '../../../../hooks/context';
+import TrackPlayer from 'react-native-track-player';
 
 type appRoutesProps = NativeStackNavigationProp<
   menuBarStackParamList,
@@ -18,14 +19,16 @@ export function AudioPlayerScreen() {
   const route: any = useRoute();
   const params = route.params;
 
+  const {setToastData} = useGlobalContext();
+
   async function handleCloseAudioPlayer() {
-    if (params?.comingFrom === Routes.HomeScreen) {
-      appBarNavigation.navigate(Routes.HomeScreen);
-    } else if (params?.comingFrom === Routes.LibraryShelfScreen) {
-      appBarNavigation.navigate(Routes.LibraryShelfScreen);
+    if (params?.comingFrom) {
+      appBarNavigation.navigate(params?.comingFrom);
     } else {
       appBarNavigation.goBack();
     }
+
+    await TrackPlayer.destroy();
   }
 
   return (
@@ -36,7 +39,13 @@ export function AudioPlayerScreen() {
         audioSource={params.audioSource}
         audioArtwork={params.audioArtwork}
         audioDuration={params.audioDuration}
-        onAudioFinished={() => ({})} // show success toast
+        onAudioFinished={() =>
+          setToastData({
+            title: 'Congratulations!',
+            label: `You've just finished an audiobook`,
+            type: 'success',
+          })
+        }
         onPressClose={() => handleCloseAudioPlayer()}
       />
     </>
