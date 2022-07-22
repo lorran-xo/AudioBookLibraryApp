@@ -2,21 +2,25 @@ import React from 'react';
 import {View} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-// import {CommonRoutes} from '../routes/common.routes';
 import {MenuBar} from '../routes/menuBar.routes';
+import {CommonRoutes} from '../routes/common.routes';
+
 import { Toast } from '../components/Toast';
 import { styles } from '../commonStyles';
 import { ToastData } from '../components/Toast/types';
 import {useGlobalContext} from '../hooks/context';
+import { AudioPlayerProps } from '../components/AudioPlayer/types';
+import { Routes } from '../../Constants';
 
 type CommonScreensType = {
-  screen?: 'AudioPlayer';
-  params?: any;
+  screen?: 'AudioPlayerScreen';
+  params?: AudioPlayerProps;
+  comingFrom?: Routes.HomeScreen | Routes.LibraryShelfScreen;
 };
 
 export type AppStackParamList = {
   MenuBar: undefined;
-  // CommonRoutes: CommonScreensType;
+  CommonRoutes: CommonScreensType;
 };
 
 const {Navigator, Screen} = createNativeStackNavigator<AppStackParamList>();
@@ -37,7 +41,7 @@ export function AppRoutes() {
           orientation: 'portrait',
         }}>
         <Screen name="MenuBar" component={MenuBar} />
-        {/* <Screen name="CommonRoutes" component={CommonRoutes} /> */}
+        <Screen name="CommonRoutes" component={CommonRoutes} />
       </Navigator>
       
       <View style={styles.toasterContainer}>

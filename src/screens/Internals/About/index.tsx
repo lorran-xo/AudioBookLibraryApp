@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import {ScrollView, Linking, RefreshControl, View, Text} from 'react-native';
+import {ScrollView, Linking, RefreshControl, Text} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {useGlobalContext} from '../../../hooks/context';
 import {DefaultScreenTitle, DefaultText, styles} from '../../../commonStyles';
@@ -28,9 +30,18 @@ import {Theme} from '../../../theme';
 import {Input} from '../../../components/Input';
 import {BottomModal} from '../../../components/BottomModal';
 import {COOL_QUOTES_LIST} from './quoteList';
-import { matchNumberInString } from '../../../utils';
+import {matchNumberInString} from '../../../utils';
+import {Routes} from '../../../../Constants';
+import {AppStackParamList} from '../../../routes/app.routes';
+
+type appRoutesProps = NativeStackNavigationProp<
+  AppStackParamList,
+  'CommonRoutes'
+>;
 
 export function About() {
+  const appNavigation = useNavigation<appRoutesProps>();
+
   const {userData, setUserData, setToastData} = useGlobalContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [newName, setNewName] = useState<string>(userData.name);
@@ -78,6 +89,26 @@ export function About() {
         type: 'error',
       });
     }
+  }
+
+  function handleOpenAudioPlayer() {
+    // TODO
+    let audioPlayerData = {
+      index: 123,
+      title: 'A Day With Great Poets',
+      subtitle: 'Gillington Byron',
+      audioSource:
+        'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3',
+      audioArtwork:
+        'https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg',
+      audioDuration: 300,
+    };
+
+    appNavigation.navigate(Routes.CommonRoutes, {
+      screen: Routes.AudioPlayerScreen,
+      params: audioPlayerData,
+      comingFrom: Routes.LibraryShelfScreen,
+    });
   }
 
   return (
@@ -147,7 +178,9 @@ export function About() {
             <TouchableOption
               onPress={() =>
                 Linking.openURL('https://www.linkedin.com/in/lorran-x-oliv/')
-              }>
+              }
+              // onPress={() => handleOpenAudioPlayer()} // TODO
+            >
               <IconWrapper>
                 <LinkedinIcon
                   width={30}
