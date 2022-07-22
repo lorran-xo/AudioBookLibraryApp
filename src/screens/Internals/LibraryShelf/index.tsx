@@ -18,7 +18,7 @@ export function LibraryShelf() {
       item: (
         <AudioBookItem
           coverUrl="https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg"
-          name="A great book"
+          name="A day with Great Poets"
           onPressItem={() => ({})}
         />
       ),
@@ -28,7 +28,7 @@ export function LibraryShelf() {
       item: (
         <AudioBookItem
           coverUrl="https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg"
-          name="A great book"
+          name="A day with Great Poets"
           onPressItem={() => ({})}
         />
       ),
@@ -38,7 +38,7 @@ export function LibraryShelf() {
       item: (
         <AudioBookItem
           coverUrl="https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg"
-          name="A great book"
+          name="A day with Great Poets"
           onPressItem={() => ({})}
         />
       ),
@@ -48,7 +48,7 @@ export function LibraryShelf() {
       item: (
         <AudioBookItem
           coverUrl="https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg"
-          name="A great book"
+          name="A day with Great Poets"
           onPressItem={() => ({})}
         />
       ),

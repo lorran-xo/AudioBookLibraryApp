@@ -38,8 +38,16 @@ export const OptionTopSpacing = styled(View)`
   margin-top: 26px;
 `;
 
+export const InfoText = styled(Text)`
+  font-weight: ${Theme.fontWeight.regular};
+  font-size: ${Theme.fontSize.font14}px;
+  color: ${Theme.colors.textPrimary};
+  line-height: 17px;
+  opacity: 0.7;
+`;
+
 export const NameInputContainer = styled(View)`
-  margin-top: 50px; 
+  margin-top: 60px; 
   margin-right: 10px;
   margin-left: 10px;
 `;

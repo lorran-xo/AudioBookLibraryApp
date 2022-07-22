@@ -100,3 +100,12 @@ export function adjustIosFontSize(
 
   return fontSize;
 }
+
+export function matchNumberInString(text: string): boolean {
+  if (text.match(/\d/)) {
+    // regex that matches if a string contains number
+    return true;
+  } else {
+    return false;
+  }
+}

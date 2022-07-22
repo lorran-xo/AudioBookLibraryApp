@@ -79,7 +79,7 @@ export function Home() {
             <BookCoverBottom>
               <RecWrapper>
                 <RecText numberOfLines={2} ellipsizeMode="tail">
-                  This is book title or description.
+                  A Day With Great Poets
                 </RecText>
               </RecWrapper>
 

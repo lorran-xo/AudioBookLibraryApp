@@ -11,6 +11,7 @@ import {
   IconWrapper,
   OptionText,
   OptionTopSpacing,
+  InfoText,
   NameInputContainer,
   RandomQuoteWrapper,
   InfoIconWrapper,
@@ -25,27 +26,19 @@ import InfoIcon from '../../../assets/icons/InfoIcon.svg';
 
 import {Theme} from '../../../theme';
 import {Input} from '../../../components/Input';
-
-const COOL_QUOTES_LIST = [
-  'A phone without audiobooks is like a body without a soul.',
-  'The way to get started is to quit talking and begin doing.',
-  'Outside of a dog, a book is a man`s best friend.',
-  'Books are a uniquely portable magic.',
-  'Some of these things are lies. But they are all good stories.',
-  'The best books are those that tell you what you know already.',
-  'I cannot remember the books I’ve listened any more than the meals I have eaten; even so, they have made me.',
-  'If there is a book that you want to listen, but it hasn’t been written yet, you must be the one to write it',
-  'You know you’ve listened a good book when you finish it and feel as if you have lost a friend.',
-  'Go to bed listening to an audio book can be as relaxing as a good massage.',
-];
+import {BottomModal} from '../../../components/BottomModal';
+import {COOL_QUOTES_LIST} from './quoteList';
+import { matchNumberInString } from '../../../utils';
 
 export function About() {
+  const {userData, setUserData, setToastData} = useGlobalContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [newName, setNewName] = useState<string>(userData.name);
+  const [showInfoBottomModal, setShowInfoBottomModal] =
+    useState<boolean>(false);
   const [coolQuoteIndex, setCoolQuotex] = useState<number>(
     Math.floor(Math.random() * COOL_QUOTES_LIST.length),
   );
-
-  const {setUserData} = useGlobalContext();
 
   function handleLogout() {
     setUserData({name: '', isAuthenticated: false});
@@ -54,6 +47,37 @@ export function About() {
   function getNewQuote() {
     setIsLoading(false);
     setCoolQuotex(Math.floor(Math.random() * COOL_QUOTES_LIST.length));
+  }
+
+  function renderBottomModal(): JSX.Element {
+    return (
+      <BottomModal
+        height={273}
+        showModal={showInfoBottomModal}
+        closeModal={() => setShowInfoBottomModal(false)}>
+        <InfoText>
+          Pull the screen down to refresh and get a new quote!
+        </InfoText>
+      </BottomModal>
+    );
+  }
+
+  function handleEditName() {
+    if (newName && !matchNumberInString(newName)) {
+      setUserData({...userData, name: newName});
+      setToastData({
+        title: 'Success',
+        label: `You've updated your name`,
+        type: 'warning',
+      });
+    } else {
+      setNewName(userData.name);
+      setToastData({
+        title: 'Failed',
+        label: `Please, insert a valid name`,
+        type: 'error',
+      });
+    }
   }
 
   return (
@@ -80,19 +104,17 @@ export function About() {
             {COOL_QUOTES_LIST[coolQuoteIndex]}
           </DefaultText>
 
-          <InfoIconWrapper onPress={() => ({})}> 
-          {/* TODO */}
+          <InfoIconWrapper onPress={() => setShowInfoBottomModal(true)}>
             <InfoIcon width={20} height={20} fill={Theme.colors.black} />
           </InfoIconWrapper>
         </RandomQuoteWrapper>
 
         <NameInputContainer>
           <Input
-            inputValue="Lorran"
+            inputValue={newName}
             placeholder="Edit Name"
-            onBlur={() => console.log('edit now')}
-            // TODO
-            handleTextChange={() => ({})}
+            onBlur={() => handleEditName()}
+            handleTextChange={newTypedName => setNewName(newTypedName)}
           />
         </NameInputContainer>
 
@@ -150,6 +172,8 @@ export function About() {
       <AboutBottomText>
         <Text> Developed by Lorran Oliveira</Text>
       </AboutBottomText>
+
+      {showInfoBottomModal && renderBottomModal()}
     </AboutContainer>
   );
 }

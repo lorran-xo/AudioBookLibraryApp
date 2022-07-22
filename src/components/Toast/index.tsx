@@ -2,14 +2,8 @@ import React, {useEffect, useState} from 'react';
 import uuid from 'react-native-uuid';
 
 import {AnimatedText} from './AnimatedText';
-import {ToastType} from './types';
+import {ToastData} from './types';
 import {AbsolutePositioning} from '../../commonStyles';
-
-export interface ToastData {
-  title: string;
-  label?: string;
-  type: ToastType;
-}
 
 interface Props {
   toastData?: ToastData | undefined;

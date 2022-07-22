@@ -80,6 +80,7 @@ export const RecWrapper = styled(View)`
   flex-direction: column;
   width: 257px;
   height: 100px;
+  align-items: center;
   justify-content: center;
 `;
 
