@@ -117,3 +117,38 @@ export function LibraryShelf() {
     </>
   );
 }
+
+/*
+// INTEGRATION
+
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+import {AppStackParamList} from '../../../routes/app.routes';
+
+type appRoutesProps = NativeStackNavigationProp<
+  AppStackParamList,
+  'CommonRoutes'
+>;
+
+const appNavigation = useNavigation<appRoutesProps>();
+
+  function handleOpenAudioPlayer() {
+    // INTEGRATION
+    let audioPlayerData = {
+      title: 'A Day With Great Poets',
+      subtitle: 'Gillington Byron',
+      audioSource:
+        'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3',
+      audioArtwork:
+        'https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg',
+      audioDuration: 300,
+    };
+
+    appNavigation.navigate(Routes.CommonRoutes, {
+      screen: Routes.AudioPlayerScreen,
+      params: audioPlayerData,
+      comingFrom: Routes.LibraryShelfScreen,
+    });
+  }
+*/

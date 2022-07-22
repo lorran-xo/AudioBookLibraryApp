@@ -27,7 +27,7 @@ export function Login() {
     if (typedUserName) {
       setInputError('');
       setUserData({name: typedUserName, isAuthenticated: true});
-      // TODO: Here we will set a random book recommendation for Home screen.
+      // INTEGRATION: Here we will set a random book recommendation for Home screen.
 
       return;
     }

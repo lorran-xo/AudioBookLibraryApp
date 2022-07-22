@@ -68,5 +68,9 @@ export const styles = StyleSheet.create({
   bookCover: {
     width: '100%',
     height: '100%'
+  },
+  bookCoverError: {
+    width: '90%',
+    height: '100%',
   }
 });

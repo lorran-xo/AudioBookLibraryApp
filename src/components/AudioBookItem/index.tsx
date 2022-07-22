@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image} from 'react-native';
 
 import {AbsolutePositioning, styles} from '../../commonStyles';
@@ -11,16 +11,27 @@ interface Props {
 }
 
 export function AudioBookItem({coverUrl, name, onPressItem}: Props) {
+  const [imageError, setImageError] = useState<boolean>(false);
+
   return (
     <Container activeOpacity={0.8} onPress={onPressItem}>
       <BookCoverWrapper>
         <AbsolutePositioning>
-          <Image
-            style={styles.bookCover}
-            source={{
-              uri: coverUrl,
-            }}
-          />
+          {!imageError ? (
+            <Image
+              style={styles.bookCover}
+              source={{
+                uri: coverUrl,
+              }}
+              // onLoad={() => ({})} // check
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <Image
+              style={styles.bookCoverError}
+              source={require('../../assets/images/AudioBookImageError.jpg')}
+            />
+          )}
         </AbsolutePositioning>
       </BookCoverWrapper>
       <BookName numberOfLines={2}>{name}</BookName>
