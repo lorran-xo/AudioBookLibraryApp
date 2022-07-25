@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -11,7 +11,9 @@ import {AudioBookItem} from '../../../components/AudioBookItem';
 import {mockBookList} from './mockBookList';
 import {BookType} from './types';
 import {renderLoading} from '../../../utils';
-import { Routes } from '../../../../Constants';
+import {Routes} from '../../../../Constants';
+import {Services} from '../../../services/services';
+import {AUDIO_LIST, IMAGE_LIST} from '../../../mocks/data';
 
 type appRoutesProps = NativeStackNavigationProp<
   AppStackParamList,
@@ -20,88 +22,70 @@ type appRoutesProps = NativeStackNavigationProp<
 
 export function LibraryShelf() {
   const appNavigation = useNavigation<appRoutesProps>();
-  const [loading, setLoading] = useState<boolean>(false);
-  const [teste, setTeste] = useState([
-    {
-      key: '1',
-      item: (
-        <AudioBookItem
-          coverUrl="https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg"
-          name="A day with Great Poets"
-          onPressItem={() => handleOpenAudioPlayer()}
-        />
-      ),
-    },
-    {
-      key: '2',
-      item: (
-        <AudioBookItem
-          coverUrl="https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg"
-          name="A day with Great Poets"
-          onPressItem={() => handleOpenAudioPlayer()}
-        />
-      ),
-    },
-    {
-      key: '3',
-      item: (
-        <AudioBookItem
-          coverUrl="https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg"
-          name="A day with Great Poets"
-          onPressItem={() => handleOpenAudioPlayer()}
-        />
-      ),
-    },
-    {
-      key: '4',
-      item: (
-        <AudioBookItem
-          coverUrl="https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg"
-          name="A day with Great Poets"
-          onPressItem={() => handleOpenAudioPlayer()}
-        />
-      ),
-    },
-  ]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [slider, setSlider] = useState([]);
+  const [secondSlider, setSecondSlider] = useState([]);
+  const [thirdSlider, setThirdSlider] = useState([]);
 
-  // useEffect(() => {
-  //   function getBookList() {
-  //     const preparedResponse = mockBookList.response.map(
-  //       async (item: BookType, index: number) => {
-  //         const categoryDataMap = {
-  //           key: String(item.id),
-  //           item: (
-  //             <AudioBookItem
-  //               coverUrl={item.url}
-  //               name={item.name}
-  //               onPressItem={() => ({})}
-  //             />
-  //           ),
-  //         };
+  useEffect(() => {
+    async function getBookList() {
+      const response = Services.getRequest(
+        'https://librivox.org/api/feed/audiobooks/?extended=1/?format=json',
+      );
 
-  //         return categoryDataMap;
-  //       },
-  //     );
+      const parsedData = await (await response).json();
 
-  //     console.log('preparedResponse::', preparedResponse);
+      const preparedResponse = parsedData.books.map((item: any) => {
+        return {
+          key: String(item.id),
+          item: (
+            <AudioBookItem
+              coverUrl={
+                item.bookImage
+                  ? item.bookImage
+                  : IMAGE_LIST[Math.floor(Math.random() * IMAGE_LIST.length)]
+              }
+              name={item.title}
+              onPressItem={() => handleOpenAudioPlayer(item.title, item.id)}
+            />
+          ),
+        };
+      });
 
-  //     setBookList(preparedResponse);
-  //     setLoading(false);
-  //   }
+      const slidersLength = preparedResponse.length;
 
-  //   getBookList();
-  // }, []);
+      setSlider(preparedResponse.slice(0, slidersLength - 35)); // 0 to 15
+      setSecondSlider(
+        preparedResponse.slice(slidersLength - 34, slidersLength - 19),
+      ); // 16 to  31
+      setThirdSlider(preparedResponse.slice(slidersLength - 18, slidersLength)); // 32 to end
 
-  function handleOpenAudioPlayer() {
-    // INTEGRATION
+      setLoading(false);
+    }
+
+    getBookList();
+  }, []);
+
+  async function handleOpenAudioPlayer(
+    selectedBookTitle: string,
+    selectedBookId: number,
+  ) {
+    const audioTracks = Services.getRequest(
+      `https://librivox.org/api/feed/audiotracks/?id=${selectedBookId}&format=json`,
+    );
+
+    const parsedData = await (await audioTracks).json();
+
     let audioPlayerData = {
-      title: 'A Day With Great Poets',
-      subtitle: 'Gillington Byron',
-      audioSource:
-        'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3',
-      audioArtwork:
-        'https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg',
-      audioDuration: 300,
+      title: selectedBookTitle,
+      subtitle: selectedBookTitle,
+      audioSource: parsedData?.audio
+        ? parsedData?.audio
+        : AUDIO_LIST[Math.floor(Math.random() * AUDIO_LIST.length)],
+      audioArtwork: slider?.bookImage
+        ? slider.bookImage
+        : IMAGE_LIST[Math.floor(Math.random() * IMAGE_LIST.length)],
+      audioDuration: 999,
     };
 
     appNavigation.navigate(Routes.CommonRoutes, {
@@ -124,19 +108,19 @@ export function LibraryShelf() {
 
             <SliderContainer>
               <SliderWrapper>
-                <HorizontalSlider>{teste}</HorizontalSlider>
+                <HorizontalSlider>{slider}</HorizontalSlider>
               </SliderWrapper>
             </SliderContainer>
 
             <SliderContainer>
               <SliderWrapper>
-                <HorizontalSlider>{teste}</HorizontalSlider>
+                <HorizontalSlider>{secondSlider}</HorizontalSlider>
               </SliderWrapper>
             </SliderContainer>
 
             <SliderContainer>
               <SliderWrapper>
-                <HorizontalSlider>{teste}</HorizontalSlider>
+                <HorizontalSlider>{thirdSlider}</HorizontalSlider>
               </SliderWrapper>
             </SliderContainer>
           </ScrollView>
