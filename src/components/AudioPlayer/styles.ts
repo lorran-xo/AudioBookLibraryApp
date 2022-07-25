@@ -57,6 +57,8 @@ export const PlayerBottom = styled(View)`
   height: 153px;
   width: ${Theme.metrics.screenWidth}px;
 
+  border-radius: 20px;
+
   background-color: #00000040;
 `;
 

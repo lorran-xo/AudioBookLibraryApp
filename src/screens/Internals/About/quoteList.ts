@@ -7,6 +7,6 @@ export const COOL_QUOTES_LIST = [
     'The best books are those that tell you what you know already.',
     'No pressure, no diamonds...',
     `Life is short, do your thing.`,
-    `The quieter you become, the more you are able to hear`,
+    `The quieter you become, the more you are able to hear.`,
     'He who is brave is free.',
 ];

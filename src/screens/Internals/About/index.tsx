@@ -87,6 +87,7 @@ export function About() {
   return (
     <AboutContainer>
       <ScrollView
+        bounces
         contentContainerStyle={styles.scrollViewBottom}
         showsVerticalScrollIndicator={false}
         refreshControl={
