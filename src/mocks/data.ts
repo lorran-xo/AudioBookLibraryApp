@@ -79,7 +79,6 @@ export const IMAGE_LIST = [
     "https://images-na.ssl-images-amazon.com/images/I/516rq5-Ta9L._SX298_BO1,204,203,200_.jpg",
     "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc793ab61b812cc_screen.jpg?ts=1637008457",
     "https://kbimages1-a.akamaihd.net/f16e3461-030b-41c0-aed5-03e1a54c3dea/353/569/90/False/design-a-book-cover.jpg",
-    "https://kbimages1-a.akamaihd.net/f16e3461-030b-41c0-aed5-03e1a54c3dea/353/569/90/False/design-a-book-cover.jpg",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvk_7sF_GEgyVNJa-PyfeZzB6cNQw82bFfVVhzcDdJMOPNhZldvCutypuNN3BbRvVnW1o&usqp=CAU",
     "https://miblart.com/wp-content/uploads/2021/01/may-fantasy-768x1152.jpg",
     "https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium",

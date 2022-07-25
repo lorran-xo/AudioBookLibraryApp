@@ -46,14 +46,14 @@ export function Home() {
   }
 
   function handleOpenAudioPlayer() {
-    // INTEGRATION
+    // TO INTEGRATE
     let audioPlayerData = {
-      title: 'A Day With Great Poets',
-      subtitle: 'Gillington Byron',
+      title: 'The War of the Worlds',
+      subtitle: 'H. G. Wells',
       audioSource:
-        'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3',
+        'https://ia601809.us.archive.org/9/items/ghohor047_2012_librivox/ghohor047_valleywheredeadmenlive_ward_dg_128kb.mp3',
       audioArtwork:
-        'https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg',
+        'https://cv2.litres.ru/pub/c/elektronnaya-kniga/cover_200/66438829-h-g-wells-the-war-of-the-worlds-active-toc-free-audiobook.jpg',
       audioDuration: 300,
     };
 
@@ -102,7 +102,7 @@ export function Home() {
                 <Image
                   style={styles.bookCover}
                   source={{
-                    uri: 'https://ia903008.us.archive.org/3/items/a_day_with_great_poets_1308_librivox/day_great_poets_1310.jpg',
+                    uri: 'https://cv2.litres.ru/pub/c/elektronnaya-kniga/cover_200/66438829-h-g-wells-the-war-of-the-worlds-active-toc-free-audiobook.jpg',
                   }}
                   onError={() => setImageError(true)}
                 />
@@ -118,7 +118,7 @@ export function Home() {
             <BookCoverBottom>
               <RecWrapper>
                 <RecText numberOfLines={2} ellipsizeMode="tail">
-                  A Day With Great Poets
+                  The War of the Worlds
                 </RecText>
               </RecWrapper>
 

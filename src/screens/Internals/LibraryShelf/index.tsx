@@ -8,12 +8,11 @@ import {HorizontalSlider} from '../../../components/HorizontalSlider';
 import {Container, SliderContainer, SliderWrapper} from './styles';
 import {DefaultScreenTitle, styles} from '../../../commonStyles';
 import {AudioBookItem} from '../../../components/AudioBookItem';
-import {mockBookList} from './mockBookList';
-import {BookType} from './types';
 import {renderLoading} from '../../../utils';
 import {Routes} from '../../../../Constants';
 import {Services} from '../../../services/services';
 import {AUDIO_LIST, IMAGE_LIST} from '../../../mocks/data';
+import {BookType} from './types';
 
 type appRoutesProps = NativeStackNavigationProp<
   AppStackParamList,
@@ -35,7 +34,7 @@ export function LibraryShelf() {
 
       const parsedData = await (await response).json();
 
-      const preparedResponse = parsedData.books.map((item: any) => {
+      const preparedResponse = parsedData.books.map((item: BookType) => {
         return {
           key: String(item.id),
           item: (

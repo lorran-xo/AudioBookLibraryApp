@@ -40,7 +40,6 @@ export function Login() {
         LocalStorageKeys.currentUserStateKey,
         currentUserState,
       );
-      // INTEGRATION: Here we will set a random book recommendation for Home screen.
 
       return;
     }
