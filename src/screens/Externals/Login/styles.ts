@@ -2,6 +2,15 @@ import styled from 'styled-components';
 import { View, Text } from 'react-native';
 import { Theme } from '../../../theme';
 
+export const Container = styled(View)`
+  flex: 1;
+
+  padding: 0 ${Theme.metrics.screenHeight * 0.02}px 0
+  ${Theme.metrics.screenHeight * 0.02}px;
+
+  background-color: ${Theme.colors.ultraLightGray};
+`;
+
 export const AppLogo = styled(View)`
     align-items: center;
     justify-content: center;

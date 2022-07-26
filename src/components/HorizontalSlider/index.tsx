@@ -1,14 +1,10 @@
 import React from 'react';
 import {FlatList} from 'react-native';
 import {Container, SliderContainer, ItemContainer, styleSheet} from './styles';
-
-interface childrenItem {
-  key: string;
-  item: JSX.Element;
-}
+import {HorizontalSliderDataType} from './types';
 
 interface Props {
-  children?: childrenItem[];
+  children?: HorizontalSliderDataType[];
 }
 
 export function HorizontalSlider({children}: Props) {

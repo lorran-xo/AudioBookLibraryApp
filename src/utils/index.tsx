@@ -102,8 +102,8 @@ export function adjustIosFontSize(
 }
 
 export function matchNumberInString(text: string): boolean {
+  // regex that matches if a string contains number
   if (text.match(/\d/)) {
-    // regex that matches if a string contains number
     return true;
   } else {
     return false;

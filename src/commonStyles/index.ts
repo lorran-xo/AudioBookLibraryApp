@@ -2,13 +2,9 @@ import styled from 'styled-components';
 import { StyleSheet, Text, View } from 'react-native';
 import { Theme } from '../theme';
 
-export const Container = styled(View)`
+export const DefaultContainer = styled(View)`
   flex: 1;
-
-  padding: 0 ${Theme.metrics.screenHeight * 0.02}px 0
-  ${Theme.metrics.screenHeight * 0.02}px;
-
-  background-color: ${Theme.colors.ultraLightGray};
+  flex-direction: column;
 `;
 
 export const DefaultScreenTitle = styled(Text)`
@@ -38,6 +34,16 @@ export const AbsolutePositioning = styled(View)`
   left: 0;
   right: 0;
   bottom: 0;
+`;
+
+export const TopBackground = styled(View)`
+  flex: 0.6;
+  background-color: #e3e3e3;
+`;
+
+export const BottomBackground = styled(View)`
+  flex: 1;
+  background-color: ${Theme.colors.ultraLightGray};
 `;
 
 export const ActivityIndicatorStyle = StyleSheet.create({
@@ -72,5 +78,12 @@ export const styles = StyleSheet.create({
   bookCoverError: {
     width: '90%',
     height: '100%',
+  },
+  styleSheetAbsolutePositioniing: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   }
 });
