@@ -51,9 +51,7 @@ export const StyledInput = styled(TextInput) <TextInputProps>`
 
 export const InputAlertText = styled(Text)`
   position: absolute;
-  margin-left: ${Theme.metrics.screenWidth * 0.043}px;
-
-  margin-top: 3px;
+  margin: 3px;
 
   font-weight: ${Theme.fontWeight.regular};
   font-size: ${Theme.fontSize.font12}px;
