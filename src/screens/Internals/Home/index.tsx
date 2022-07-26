@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ScrollView, View, Text, Platform, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -32,6 +32,8 @@ import {
 import {adjustIosFontSize, renderLoading} from '../../../utils';
 import {Button} from '../../../components/Button';
 import {Routes} from '../../../../Constants';
+import {AudioPlayerProps} from '../../../components/AudioPlayer/types';
+import {AUDIO_LIST, IMAGE_LIST} from '../../../mocks/data';
 
 type appRoutesProps = NativeStackNavigationProp<
   AppStackParamList,
@@ -41,104 +43,127 @@ type appRoutesProps = NativeStackNavigationProp<
 const OS = Platform.OS;
 
 export function Home() {
-  const {userData} = useGlobalContext();
+  const {userData, audioLibraryData} = useGlobalContext();
   const appNavigation = useNavigation<appRoutesProps>();
 
+  const [audiobookSuggestion, setAudiobookSuggestion] =
+    useState<AudioPlayerProps>();
   const [currentFont, setCurrentFont] = useState<number>(Theme.fontSize.font30);
   const [imageError, setImageError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    async function getAudiobookSuggestion() {
+      const randomAudioBook: AudioPlayerProps = {
+        title: audioLibraryData?.books[
+          Math.floor(Math.random() * audioLibraryData?.books?.length)
+        ].title,
+        subtitle: audioLibraryData?.books[
+          Math.floor(Math.random() * audioLibraryData?.books?.length)
+        ].copyright_year,
+        audioSource: AUDIO_LIST[Math.floor(Math.random() * AUDIO_LIST.length)],
+        audioArtwork: IMAGE_LIST[Math.floor(Math.random() * IMAGE_LIST.length)],
+        audioDuration: 999,
+      };
+
+      setAudiobookSuggestion(randomAudioBook);
+      setLoading(false);
+    }
+
+    getAudiobookSuggestion();
+  }, []);
+
+  // setLoading(false);
 
   function adjustIosGreetingFontSize(e: any) {
     setCurrentFont(adjustIosFontSize(e, 1, currentFont));
   }
 
   function handleOpenAudioPlayer() {
-    // TO INTEGRATE
-    let audioPlayerData = {
-      title: 'The War of the Worlds',
-      subtitle: 'H. G. Wells',
-      audioSource:
-        'https://ia601809.us.archive.org/9/items/ghohor047_2012_librivox/ghohor047_valleywheredeadmenlive_ward_dg_128kb.mp3',
-      audioArtwork:
-        'https://cv2.litres.ru/pub/c/elektronnaya-kniga/cover_200/66438829-h-g-wells-the-war-of-the-worlds-active-toc-free-audiobook.jpg',
-      audioDuration: 300,
-    };
-
     appNavigation.navigate(Routes.CommonRoutes, {
       screen: Routes.AudioPlayerScreen,
-      params: audioPlayerData,
+      params: audiobookSuggestion,
       comingFrom: Routes.HomeScreen,
     });
   }
 
   return (
-    <DefaultContainer>
-      <TopBackground />
-      <BottomBackground />
+    <>
+      {loading ? (
+        renderLoading()
+      ) : (
+        <DefaultContainer>
+          <TopBackground />
+          <BottomBackground />
 
-      <ScrollView
-        bounces={false}
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollViewBottom}
-        showsVerticalScrollIndicator={false}>
-        <ContentView>
-          <IntroWrapper>
-            <GreetingView>
-              <Text
-                numberOfLines={OS === 'android' ? 1 : undefined}
-                adjustsFontSizeToFit={OS === 'android'}
-                onTextLayout={(e: any) =>
-                  OS === 'ios' && adjustIosGreetingFontSize(e)
-                }>
-                <GreetingText fontSize={currentFont}>Hello, </GreetingText>
-                <NameText fontSize={currentFont}>{userData?.name}!</NameText>
-              </Text>
-            </GreetingView>
+          <ScrollView
+            bounces={false}
+            style={styles.scrollView}
+            contentContainerStyle={styles.scrollViewBottom}
+            showsVerticalScrollIndicator={false}>
+            <ContentView>
+              <IntroWrapper>
+                <GreetingView>
+                  <Text
+                    numberOfLines={OS === 'android' ? 1 : undefined}
+                    adjustsFontSizeToFit={OS === 'android'}
+                    onTextLayout={(e: any) =>
+                      OS === 'ios' && adjustIosGreetingFontSize(e)
+                    }>
+                    <GreetingText fontSize={currentFont}>Hello, </GreetingText>
+                    <NameText fontSize={currentFont}>
+                      {userData?.name}!
+                    </NameText>
+                  </Text>
+                </GreetingView>
 
-            <DefaultText
-              numberOfLines={2}
-              adjustsFontSizeToFit
-              ellipsizeMode="tail">
-              Our recommendation for you today is...
-            </DefaultText>
-          </IntroWrapper>
+                <DefaultText
+                  numberOfLines={2}
+                  adjustsFontSizeToFit
+                  ellipsizeMode="tail">
+                  Our recommendation for you now is...
+                </DefaultText>
+              </IntroWrapper>
 
-          <BookCoverContainer>
-            <AbsolutePositioning>
-              {!imageError ? (
-                <Image
-                  style={styles.bookCover}
-                  source={{
-                    uri: 'https://cv2.litres.ru/pub/c/elektronnaya-kniga/cover_200/66438829-h-g-wells-the-war-of-the-worlds-active-toc-free-audiobook.jpg',
-                  }}
-                  onError={() => setImageError(true)}
-                />
-              ) : (
-                <Image
-                  style={styles.bookCoverError}
-                  source={require('../../../assets/images/AudioBookImageError.jpg')}
-                />
-              )}
-            </AbsolutePositioning>
-            <View />
+              <BookCoverContainer>
+                <AbsolutePositioning>
+                  {!imageError ? (
+                    <Image
+                      style={styles.bookCover}
+                      source={{
+                        uri: audiobookSuggestion?.audioArtwork,
+                      }}
+                      onError={() => setImageError(true)}
+                    />
+                  ) : (
+                    <Image
+                      style={styles.bookCoverError}
+                      source={require('../../../assets/images/AudioBookImageError.jpg')}
+                    />
+                  )}
+                </AbsolutePositioning>
+                <View />
 
-            <BookCoverBottom>
-              <RecWrapper>
-                <RecText numberOfLines={2} ellipsizeMode="tail">
-                  The War of the Worlds
-                </RecText>
-              </RecWrapper>
+                <BookCoverBottom>
+                  <RecWrapper>
+                    <RecText numberOfLines={2} ellipsizeMode="tail">
+                      {audiobookSuggestion?.title}
+                    </RecText>
+                  </RecWrapper>
 
-              <ListenButtonWrapper>
-                <Button
-                  title="Listen now"
-                  width={265}
-                  onButtonPress={() => handleOpenAudioPlayer()}
-                />
-              </ListenButtonWrapper>
-            </BookCoverBottom>
-          </BookCoverContainer>
-        </ContentView>
-      </ScrollView>
-    </DefaultContainer>
+                  <ListenButtonWrapper>
+                    <Button
+                      title="Listen now"
+                      width={265}
+                      onButtonPress={() => handleOpenAudioPlayer()}
+                    />
+                  </ListenButtonWrapper>
+                </BookCoverBottom>
+              </BookCoverContainer>
+            </ContentView>
+          </ScrollView>
+        </DefaultContainer>
+      )}
+    </>
   );
 }

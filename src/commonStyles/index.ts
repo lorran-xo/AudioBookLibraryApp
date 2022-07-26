@@ -78,5 +78,12 @@ export const styles = StyleSheet.create({
   bookCoverError: {
     width: '90%',
     height: '100%',
+  },
+  styleSheetAbsolutePositioniing: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   }
 });

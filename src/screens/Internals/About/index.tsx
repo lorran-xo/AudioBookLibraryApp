@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {ScrollView, Linking, RefreshControl, Text} from 'react-native';
-import MMKVStorage from 'react-native-mmkv-storage';
 
 import {useGlobalContext} from '../../../hooks/context';
 import {DefaultScreenTitle, DefaultText, styles} from '../../../commonStyles';
@@ -24,17 +23,14 @@ import LinkedinIcon from '../../../assets/icons/LinkedinIcon.svg';
 import InstagramIcon from '../../../assets/icons/InstagramIcon.svg';
 import LogoutIcon from '../../../assets/icons/LogoutIcon.svg';
 import InfoIcon from '../../../assets/icons/InfoIcon.svg';
-
 import {Theme} from '../../../theme';
 import {Input} from '../../../components/Input';
 import {BottomModal} from '../../../components/BottomModal';
 import {matchNumberInString} from '../../../utils';
 import {COOL_QUOTES_LIST} from './quoteList';
 
-const localStorage = new MMKVStorage.Loader().initialize();
-
 export function About() {
-  const {userData, setUserData, setToastData} = useGlobalContext();
+  const {userData, setUserData, setToastData, logout} = useGlobalContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [newName, setNewName] = useState<string>(userData.name);
   const [showInfoBottomModal, setShowInfoBottomModal] =
@@ -42,11 +38,6 @@ export function About() {
   const [coolQuoteIndex, setCoolQuotex] = useState<number>(
     Math.floor(Math.random() * COOL_QUOTES_LIST.length),
   );
-
-  function handleLogout() {
-    setUserData({name: '', isAuthenticated: false});
-    localStorage.clearStore();
-  }
 
   function getNewQuote() {
     setIsLoading(false);
@@ -165,7 +156,7 @@ export function About() {
           </OptionTopSpacing>
 
           <OptionTopSpacing>
-            <TouchableOption onPress={() => handleLogout()}>
+            <TouchableOption onPress={() => logout()}>
               <IconWrapper>
                 <LogoutIcon width={30} height={30} fill={Theme.colors.black} />
               </IconWrapper>

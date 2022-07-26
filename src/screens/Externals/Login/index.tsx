@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ScrollView} from 'react-native';
+import {ActivityIndicator, ScrollView, View} from 'react-native';
 import MMKVStorage from 'react-native-mmkv-storage';
 
 import {
@@ -19,34 +19,28 @@ import {useGlobalContext} from '../../../hooks/context';
 import {Input} from '../../../components/Input';
 import {Button} from '../../../components/Button';
 import {Theme} from '../../../theme';
-import {LocalStorageKeys} from '../../../../Constants';
 import {matchNumberInString} from '../../../utils';
 
 const localStorage = new MMKVStorage.Loader().initialize();
 
 export function Login() {
-  const {setUserData} = useGlobalContext();
+  const {login} = useGlobalContext();
   const [typedUserName, setTypedUserName] = useState<string>('');
   const [inputError, setInputError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   function handleLogin() {
+    setLoading(true);
     if (typedUserName && !matchNumberInString(typedUserName)) {
-      let currentUserState = {
-        name: typedUserName,
-        isAuthenticated: true,
-      };
-
-      setInputError('');
-      setUserData({name: typedUserName, isAuthenticated: true});
-      localStorage.setMap(
-        LocalStorageKeys.currentUserStateKey,
-        currentUserState,
-      );
+      login(typedUserName).then(() => {
+        setLoading(false);
+      });
 
       return;
     }
 
     setInputError('Please, fill in with a valid name ');
+    setLoading(false);
   }
 
   function handleGetTypedInput(value: string) {
@@ -88,7 +82,18 @@ export function Login() {
           </InputContainer>
 
           <ButtonContainer>
-            <Button title="Start" onButtonPress={() => handleLogin()} />
+            <Button
+              disabled={loading}
+              title={!loading ? 'Start' : ''}
+              onButtonPress={() => handleLogin()}
+            />
+            {loading && (
+              <ActivityIndicator
+                style={styles.styleSheetAbsolutePositioniing}
+                size="small"
+                color={Theme.colors.logo}
+              />
+            )}
           </ButtonContainer>
         </LoginTextWrapper>
       </ScrollView>

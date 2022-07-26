@@ -21,6 +21,8 @@ import {Routes} from '../../../../Constants';
 import {Services} from '../../../services/services';
 import {AUDIO_LIST, IMAGE_LIST} from '../../../mocks/data';
 import {BookType} from './types';
+import {useGlobalContext} from '../../../hooks/context';
+import {HorizontalSliderDataType} from '../../../components/HorizontalSlider/types';
 
 type appRoutesProps = NativeStackNavigationProp<
   AppStackParamList,
@@ -28,21 +30,17 @@ type appRoutesProps = NativeStackNavigationProp<
 >;
 
 export function LibraryShelf() {
+  const {audioLibraryData} = useGlobalContext();
   const appNavigation = useNavigation<appRoutesProps>();
   const [loading, setLoading] = useState<boolean>(true);
-  const [slider, setSlider] = useState([]);
-  const [secondSlider, setSecondSlider] = useState([]);
-  const [thirdSlider, setThirdSlider] = useState([]);
+  const [slider, setSlider] = useState<HorizontalSliderDataType[]>();
+  const [secondSlider, setSecondSlider] =
+    useState<HorizontalSliderDataType[]>();
+  const [thirdSlider, setThirdSlider] = useState<HorizontalSliderDataType[]>();
 
   useEffect(() => {
-    async function getBookList() {
-      const response = Services.getRequest(
-        'https://librivox.org/api/feed/audiobooks/?extended=1/?format=json',
-      );
-
-      const parsedData = await (await response).json();
-
-      const preparedResponse = parsedData.books.map((item: BookType) => {
+    async function prepareHorizontalSliders() {
+      const preparedResponse = audioLibraryData.books.map((item: BookType) => {
         return {
           key: String(item.id),
           item: (
@@ -70,7 +68,7 @@ export function LibraryShelf() {
       setLoading(false);
     }
 
-    getBookList();
+    prepareHorizontalSliders();
   }, []);
 
   async function handleOpenAudioPlayer(

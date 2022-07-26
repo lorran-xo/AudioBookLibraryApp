@@ -5,13 +5,12 @@ import {AppRoutes} from './app.routes'; // Internal routes of the app, when the 
 import {AuthRoutes} from './auth.routes'; // External routes of the app, before the user logs in;
 import {useGlobalContext} from '../hooks/context';
 import {LocalStorageKeys} from '../../Constants';
-import {ContextUserType} from '../hooks/types';
 import {renderLoading} from '../utils';
 
 const localStorage = new MMKVStorage.Loader().initialize();
 
 export function Routes() {
-  const {userData, setUserData} = useGlobalContext();
+  const {userData, login, logout} = useGlobalContext();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -23,15 +22,9 @@ export function Routes() {
       .getMapAsync(LocalStorageKeys.currentUserStateKey)
       .then(value => {
         if (value) {
-          setUserData({
-            isAuthenticated: value?.isAuthenticated,
-            name: value?.name,
-          } as ContextUserType);
+          login(value?.name);
         } else {
-          setUserData({
-            isAuthenticated: false,
-            name: '',
-          } as ContextUserType);
+          logout();
         }
       })
       .finally(() => {
