@@ -5,8 +5,16 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {AppStackParamList} from '../../../routes/app.routes';
 import {HorizontalSlider} from '../../../components/HorizontalSlider';
-import {Container, SliderContainer, SliderWrapper} from './styles';
-import {DefaultScreenTitle, styles} from '../../../commonStyles';
+import {SliderContainer, SliderWrapper} from './styles';
+
+import {
+  DefaultContainer,
+  DefaultScreenTitle,
+  TopBackground,
+  BottomBackground,
+  styles,
+} from '../../../commonStyles';
+
 import {AudioBookItem} from '../../../components/AudioBookItem';
 import {renderLoading} from '../../../utils';
 import {Routes} from '../../../../Constants';
@@ -99,8 +107,13 @@ export function LibraryShelf() {
       {loading ? (
         renderLoading()
       ) : (
-        <Container>
+        <DefaultContainer>
+          <TopBackground />
+          <BottomBackground />
+
           <ScrollView
+            bounces={false}
+            style={styles.scrollView}
             contentContainerStyle={styles.scrollViewBottom}
             showsVerticalScrollIndicator={false}>
             <DefaultScreenTitle>Library Shelf</DefaultScreenTitle>
@@ -123,7 +136,7 @@ export function LibraryShelf() {
               </SliderWrapper>
             </SliderContainer>
           </ScrollView>
-        </Container>
+        </DefaultContainer>
       )}
     </>
   );

@@ -3,14 +3,20 @@ import {ScrollView, View, Text, Platform, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AbsolutePositioning, DefaultText, styles} from '../../../commonStyles';
 import {AppStackParamList} from '../../../routes/app.routes';
 import {useGlobalContext} from '../../../hooks/context';
 import {Theme} from '../../../theme';
+
 import {
-  Container,
-  HeaderBackground,
-  BodyBackground,
+  DefaultContainer,
+  AbsolutePositioning,
+  DefaultText,
+  TopBackground,
+  BottomBackground,
+  styles,
+} from '../../../commonStyles';
+
+import {
   ContentView,
   IntroWrapper,
   GreetingView,
@@ -25,7 +31,7 @@ import {
 
 import {adjustIosFontSize, renderLoading} from '../../../utils';
 import {Button} from '../../../components/Button';
-import { Routes } from '../../../../Constants';
+import {Routes} from '../../../../Constants';
 
 type appRoutesProps = NativeStackNavigationProp<
   AppStackParamList,
@@ -65,9 +71,9 @@ export function Home() {
   }
 
   return (
-    <Container>
-      <HeaderBackground />
-      <BodyBackground />
+    <DefaultContainer>
+      <TopBackground />
+      <BottomBackground />
 
       <ScrollView
         bounces={false}
@@ -123,12 +129,16 @@ export function Home() {
               </RecWrapper>
 
               <ListenButtonWrapper>
-                <Button title="Listen now" width={265} onButtonPress={() => handleOpenAudioPlayer()} />
+                <Button
+                  title="Listen now"
+                  width={265}
+                  onButtonPress={() => handleOpenAudioPlayer()}
+                />
               </ListenButtonWrapper>
             </BookCoverBottom>
           </BookCoverContainer>
         </ContentView>
       </ScrollView>
-    </Container>
+    </DefaultContainer>
   );
 }

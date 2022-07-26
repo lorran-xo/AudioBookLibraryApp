@@ -3,6 +3,7 @@ import {ScrollView} from 'react-native';
 import MMKVStorage from 'react-native-mmkv-storage';
 
 import {
+  Container,
   AppLogo,
   LoginText,
   LoginTextWrapper,
@@ -13,7 +14,7 @@ import {
 } from './styles';
 
 import Logo from '../../../assets/logos/app-logo.svg';
-import {Container, styles} from '../../../commonStyles';
+import {styles} from '../../../commonStyles';
 import {useGlobalContext} from '../../../hooks/context';
 import {Input} from '../../../components/Input';
 import {Button} from '../../../components/Button';
@@ -47,6 +48,14 @@ export function Login() {
     setInputError('Please, fill in with your name!');
   }
 
+  function handleGetTypedInput(value: string) {
+    setTypedUserName(value);
+
+    if (inputError) {
+      setInputError('');
+    }
+  }
+
   return (
     <Container>
       <ScrollView
@@ -73,7 +82,7 @@ export function Login() {
               placeholder="Name"
               errorText={inputError}
               inputValue={typedUserName}
-              handleTextChange={value => setTypedUserName(value)}
+              handleTextChange={value => handleGetTypedInput(value)}
             />
           </InputContainer>
 

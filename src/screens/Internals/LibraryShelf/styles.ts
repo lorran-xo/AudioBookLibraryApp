@@ -4,7 +4,7 @@ import { Theme } from '../../../theme';
 
 export const Container = styled(View)`
   flex: 1;
-  background-color: ${Theme.colors.white};
+  flex-direction: column;
 `;
 
 export const SliderContainer = styled(View)`

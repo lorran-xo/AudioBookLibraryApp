@@ -8,21 +8,6 @@ interface TextProps {
     fontSize: number;
 }
 
-export const Container = styled(View)`
-  flex: 1;
-  flex-direction: column;
-`;
-
-export const HeaderBackground = styled(View)`
-  flex: 0.6;
-  background-color: #e3e3e3;
-`;
-
-export const BodyBackground = styled(View)`
-  flex: 1;
-  background-color: ${Theme.colors.ultraLightGray};
-`;
-
 export const ContentView = styled(View)`
   align-self: center;
 `;
