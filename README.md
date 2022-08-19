@@ -4,7 +4,7 @@ This is a personal React Native project of an Audio Book app for Android & iOS.
 ###### NOTE: Initially the data was being retrieved using the [LibriVox API](https://librivox.org/api/info) - but I had to mock most of the data otherwise the app would crash because most of the data from the API is unavailable / not stored anymore. But the app works for its main purpose anyways.
 
 ## The app ##
-The app is still in progress as it can be seen in this [Project Kanban](https://github.com/users/lorran-xo/projects/2/views/1).
+The app is still in progress as it can be seen in this [Project Kanban](https://github.com/users/lorran-xo/projects/2/views/1). This is what I have so far:
 
 ###### SCREENSHOTS: 
 <p>
