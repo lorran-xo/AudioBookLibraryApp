@@ -1,10 +1,10 @@
 ## Summary ##
 This is a personal React Native project of an Audio Book app for Android & iOS. 
 
-###### NOTE: Initially the data was being retrieved using the [LibriVox API](https://librivox.org/api/info) - but I had to mock most of the data otherwise the app would crash because most of the data from the API is unavailable / not stored anymore. But the app works for its main purpose anyways.
+###### ⚠️ NOTE : Initially the audio book data was being retrieved using the [LibriVox API](https://librivox.org/api/info), which is not available anymore. Most of the data used on the app is now mocked and will go through a refactor soon.
 
 ## The app ##
-The app is still in progress as it can be seen in this [Project Kanban](https://github.com/users/lorran-xo/projects/2/views/1). This is what I have so far:
+The app is still in progress as it can be seen on the [project's Kanban](https://github.com/users/lorran-xo/projects/2/views/1). This is what is done so far:
 
 ###### SCREENSHOTS: 
 <p>
@@ -24,7 +24,7 @@ https://user-images.githubusercontent.com/58430075/181010578-db830cdd-d0e6-4b3b-
 
 ## Technologies ##
 
-This application runs the most recent technologies, combined with the use of React community best practices and clean code with extendable structure and reusable components. The main ones are:
+This application runs with the combination of the follow technologies and approaches:
 
   - React Native
   - TypeScript
