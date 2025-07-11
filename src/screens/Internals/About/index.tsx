@@ -35,13 +35,13 @@ export function About() {
   const [newName, setNewName] = useState<string>(userData.name);
   const [showInfoBottomModal, setShowInfoBottomModal] =
     useState<boolean>(false);
-  const [coolQuoteIndex, setCoolQuotex] = useState<number>(
+  const [coolQuoteIndex, setCoolQuoteIndex] = useState<number>(
     Math.floor(Math.random() * COOL_QUOTES_LIST.length),
   );
 
   function getNewQuote() {
     setIsLoading(false);
-    setCoolQuotex(Math.floor(Math.random() * COOL_QUOTES_LIST.length));
+    setCoolQuoteIndex(Math.floor(Math.random() * COOL_QUOTES_LIST.length));
   }
 
   function renderBottomModal(): JSX.Element {
