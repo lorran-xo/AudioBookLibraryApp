@@ -142,7 +142,7 @@ export function About() {
           <OptionTopSpacing>
             <TouchableOption
               onPress={() =>
-                Linking.openURL('https://www.instagram.com/lorran_xo/')
+                Linking.openURL('https://www.instagram.com/lorranxo/')
               }>
               <IconWrapper>
                 <InstagramIcon
